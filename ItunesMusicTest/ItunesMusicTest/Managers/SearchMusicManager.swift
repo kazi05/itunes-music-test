@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 let baseURL = "https://itunes.apple.com/"
 
@@ -19,19 +20,14 @@ class SearchMusicManager {
     private let searchURL = baseURL + "search"
     
     func searchMusic(by artist: String?, completion: @escaping ([Music])-> Void) {
-        let params = ["term": artist ?? ""]
+        let artistFullName = artist?.replacingOccurrences(of: "+", with: " ")
+        let params = ["term": artistFullName ?? ""]
         Alamofire.request(searchURL, method: .get, parameters: params, encoding: URLEncoding.default).responseJSON { (response) in
             print(response.request)
             switch response.result {
-            case .success(let data):
-                do {
-//                    let musics = try JSONDecoder().decode([Music].self, from: data as! Data)
-//                    print(musics)
-//                    completion(musics)
-                    print(data)
-                }catch {
-                    print("Error: \(error.localizedDescription)")
-                }
+            case .success(let value):
+                let jsonData = JSON(value)
+                print(jsonData)
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
             }
