@@ -95,8 +95,7 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if isConnectedToNetwork() {
             self.musics = []
-            SearchMusicManager.shared.searchMusic(by: searchBar.text) { (result) in
-                let music = Music(result)
+            SearchMusicManager.shared.searchMusic(by: searchBar.text) { (music) in
                 self.musics.append(music)
             }
         }else {

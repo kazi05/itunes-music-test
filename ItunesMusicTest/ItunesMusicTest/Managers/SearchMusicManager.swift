@@ -21,16 +21,17 @@ class SearchMusicManager {
     
     
     //MARK: Get music list
-    func searchMusic(by artist: String?, completion: @escaping (JSON)-> Void) {
+    func searchMusic(by artist: String?, completion: @escaping (Music)-> Void) {
         let artistFullName = artist?.replacingOccurrences(of: "+", with: " ")
         let params = ["term": artistFullName ?? ""]
         Alamofire.request(searchURL, method: .get, parameters: params, encoding: URLEncoding.default).responseJSON { (response) in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                guard let result = jsonData["results"].array else { return }
-                result.forEach({ (music) in
-                    completion(music)
+                guard let results = jsonData["results"].array else { return }
+                results.forEach({ (music) in
+                    let result = Music(music)
+                    completion(result)
                 })
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")

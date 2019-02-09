@@ -8,27 +8,27 @@
 
 import XCTest
 @testable import ItunesMusicTest
+@testable import SwiftyJSON
 
 class ItunesMusicTestTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testLoadImage() {
+        let urlString = "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjwupiCt6_gAhVhl4sKHRfMDFAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fnature%2F&psig=AOvVaw1aSVniMNThBXJwNfudxCZS&ust=1549828430870710"
+        SearchMusicManager.shared.downloadAlbumImage(url: urlString) { (image) in
+            XCTAssertNotNil(image)
         }
     }
+    
+    func testArtistName() {
+        var musics: [Music] = []
+        SearchMusicManager.shared.searchMusic(by: "Snoop Dog") { (music) in
+            musics.append(music)
+            let artistName = musics.filter{ $0.artistName == "Snoop Dog" }
+            XCTAssertEqual(artistName[0].artistName, "Snoop Dog")
+            XCTAssertGreaterThan(artistName.count, 0)
+        }
+    }
+    
+    
 
 }

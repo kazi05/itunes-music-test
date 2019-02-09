@@ -19,4 +19,10 @@ struct Music {
         self.trackName = dict["trackName"].string
         self.albumImageURL = dict["artworkUrl60"].string
     }
+    
+    init(artistName: String?, trackName: String?, imageURL: String?) {
+        self.artistName = artistName
+        self.trackName = trackName
+        self.albumImageURL = imageURL
+    }
 }

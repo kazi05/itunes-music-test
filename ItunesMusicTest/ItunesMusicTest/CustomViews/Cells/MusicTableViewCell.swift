@@ -16,7 +16,7 @@ class MusicTableViewCell: UITableViewCell, NibLoadable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
     func set(artistName: String?, and trackName: String?) {
