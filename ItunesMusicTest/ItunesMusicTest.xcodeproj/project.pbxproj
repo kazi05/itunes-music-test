@@ -20,6 +20,7 @@
 		32B994A3220F18E50044AA3A /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B994A1220F18E50044AA3A /* MusicTableViewCell.swift */; };
 		32B994A4220F18E50044AA3A /* MusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B994A2220F18E50044AA3A /* MusicTableViewCell.xib */; };
 		32B994A7220F1FAE0044AA3A /* SearchMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B994A6220F1FAE0044AA3A /* SearchMusicManager.swift */; };
+		32B994AA220F4B2A0044AA3A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B994A9220F4B2A0044AA3A /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		32B994A1220F18E50044AA3A /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
 		32B994A2220F18E50044AA3A /* MusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicTableViewCell.xib; sourceTree = "<group>"; };
 		32B994A6220F1FAE0044AA3A /* SearchMusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicManager.swift; sourceTree = "<group>"; };
+		32B994A9220F4B2A0044AA3A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		50EF7EFAC9915893806F0837 /* Pods_ItunesMusicTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItunesMusicTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C894D354D8901DA161BB3443 /* Pods-ItunesMusicTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesMusicTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ItunesMusicTest/Pods-ItunesMusicTest.debug.xcconfig"; sourceTree = "<group>"; };
 		F09FEC73A10933F6A99695C5 /* Pods-ItunesMusicTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesMusicTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ItunesMusicTest/Pods-ItunesMusicTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				32B9946F220F0A240044AA3A /* AppDelegate.swift */,
 				32B9947B220F0A250044AA3A /* Info.plist */,
+				32B994A8220F4B180044AA3A /* Support files */,
 				32B99497220F16280044AA3A /* Extensions */,
 				32B99494220F15DA0044AA3A /* Protocols */,
 				32B994A5220F1F900044AA3A /* Managers */,
@@ -192,6 +195,14 @@
 				32B994A6220F1FAE0044AA3A /* SearchMusicManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		32B994A8220F4B180044AA3A /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				32B994A9220F4B2A0044AA3A /* Helper.swift */,
+			);
+			path = "Support files";
 			sourceTree = "<group>";
 		};
 		4E6D729BF6EA536F04DFA5F1 /* Frameworks */ = {
@@ -363,6 +374,7 @@
 				32B99470220F0A240044AA3A /* AppDelegate.swift in Sources */,
 				32B994A7220F1FAE0044AA3A /* SearchMusicManager.swift in Sources */,
 				32B994A3220F18E50044AA3A /* MusicTableViewCell.swift in Sources */,
+				32B994AA220F4B2A0044AA3A /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +533,10 @@
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				INFOPLIST_FILE = ItunesMusicTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.learnanddevelop.ItunesMusicTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -538,7 +553,10 @@
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				INFOPLIST_FILE = ItunesMusicTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.learnanddevelop.ItunesMusicTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -554,7 +572,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				INFOPLIST_FILE = ItunesMusicTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.learnanddevelop.ItunesMusicTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -571,7 +593,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				INFOPLIST_FILE = ItunesMusicTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.learnanddevelop.ItunesMusicTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

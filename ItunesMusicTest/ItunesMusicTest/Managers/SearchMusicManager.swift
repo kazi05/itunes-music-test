@@ -19,17 +19,36 @@ class SearchMusicManager {
     
     private let searchURL = baseURL + "search"
     
-    func searchMusic(by artist: String?, completion: @escaping ([Music])-> Void) {
+    
+    //MARK: Get music list
+    func searchMusic(by artist: String?, completion: @escaping (JSON)-> Void) {
         let artistFullName = artist?.replacingOccurrences(of: "+", with: " ")
         let params = ["term": artistFullName ?? ""]
         Alamofire.request(searchURL, method: .get, parameters: params, encoding: URLEncoding.default).responseJSON { (response) in
-            print(response.request)
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)
-                print(jsonData)
+                guard let result = jsonData["results"].array else { return }
+                result.forEach({ (music) in
+                    completion(music)
+                })
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    //MARK: Get album image
+    func downloadAlbumImage(url: String?, completion: @escaping (UIImage) -> Void) {
+        Alamofire.request(url ?? "").responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let image = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }

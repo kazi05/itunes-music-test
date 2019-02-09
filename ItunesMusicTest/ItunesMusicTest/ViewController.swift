@@ -33,6 +33,8 @@ class ViewController: UIViewController {
         setupSearchController()
     }
     
+    
+    //MARK: Setup tableView
     private func delegating() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -42,6 +44,8 @@ class ViewController: UIViewController {
         tableView.register(MusicTableViewCell.nib, forCellReuseIdentifier: MusicTableViewCell.name)
     }
 
+    
+    //MARK: Setup SearchCobtroller
     private func setupSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
@@ -62,15 +66,21 @@ extension ViewController {
     }
 }
 
+//MARK: UITableView Delegate
 extension ViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
+    }
 }
 
+//MARK: UITableView DataSource
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MusicTableViewCell.name, for: indexPath) as! MusicTableViewCell
-        
+        let music = musics[indexPath.row]
+        cell.set(artistName: music.artistName, and: music.trackName)
+        cell.set(image: music.albumImageURL)
         return cell
     }
     
@@ -80,11 +90,17 @@ extension ViewController: UITableViewDataSource {
     
 }
 
+//MARK: SearchBar Delegate
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        SearchMusicManager.shared.searchMusic(by: searchBar.text) { (musics) in
-            print("Done")
-            self.musics = musics
+        if isConnectedToNetwork() {
+            self.musics = []
+            SearchMusicManager.shared.searchMusic(by: searchBar.text) { (result) in
+                let music = Music(result)
+                self.musics.append(music)
+            }
+        }else {
+            showAlert(with: "Ошибка", and: "Отсутствует подключение к Интернету!")
         }
     }
 }

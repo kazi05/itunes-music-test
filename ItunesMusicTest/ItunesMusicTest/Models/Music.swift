@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 struct Music {
     let artistName: String?
     let trackName: String?
-    let albumImage: Data?
+    let albumImageURL: String?
+    
+    init(_ dict: JSON) {
+        self.artistName = dict["artistName"].string
+        self.trackName = dict["trackName"].string
+        self.albumImageURL = dict["artworkUrl60"].string
+    }
 }
