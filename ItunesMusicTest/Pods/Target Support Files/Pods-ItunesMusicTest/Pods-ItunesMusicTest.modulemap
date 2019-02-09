@@ -1,0 +1,6 @@
+framework module Pods_ItunesMusicTest {
+  umbrella header "Pods-ItunesMusicTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
